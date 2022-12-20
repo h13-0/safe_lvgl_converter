@@ -11,7 +11,7 @@ Usually, you just need to download the corresponding version of src in the Relea
 When you need to customize the behavior in the safe_lvgl API, you need to change the template file and run this tool.  
 
 ### Custom template files
-Reference [Variable table](https://github.com/h13-0/safe_lvgl_converter#Variable_table) and [Examples](https://github.com/h13-0/safe_lvgl_converter#Examples).  
+Reference [Variable table](https://github.com/h13-0/safe_lvgl_converter#Variable-table) and [Examples](https://github.com/h13-0/safe_lvgl_converter#Examples).  
 
 ### Requirements
 * Python3
@@ -93,7 +93,7 @@ lv_obj_t * safe_lv_obj_create(lv_obj_t * parent)
 }
 ```
 
-##### src_template.c  
+##### source_template.c  
 template:  
 ```C
 /**
@@ -204,4 +204,22 @@ void safe_lv_tick_inc(uint32_t tick_period);
 ```
 
 ## Use as a plugin
-TODO.
+```python
+from safe_lvgl_converter import SafeLVGL_Generator
+
+def main():
+    # Parse.
+    generator = SafeLVGL_Generator(
+        lvgl_path = "...", safe_lvgl_path = "...",
+        compiler_path = "gcc",
+        template_header = "...", template_source = "...",
+        template_func_decl = "...", template_func_def = "..."
+    )
+
+    # Generate safe_lvgl.
+    generator.gen_safe_lvgl()
+
+if __name__ == "__main__":
+    main()
+
+```
