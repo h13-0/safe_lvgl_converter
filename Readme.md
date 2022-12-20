@@ -111,12 +111,12 @@ void safe_lvgl_init(void)
     // recursive mutex init.
 }
 
-static inline lv_recursive_unlock(void)
+static inline void lv_recursive_unlock(void)
 {
     // Unlock recursive mutex.
 }
 
-static inline lv_recursive_lock(void)
+static inline void lv_recursive_lock(void)
 {
     // Lock recursive mutex.
 }
@@ -141,12 +141,12 @@ void safe_lvgl_init(void)
     // recursive mutex init.
 }
 
-static inline lv_recursive_unlock(void)
+static inline void lv_recursive_unlock(void)
 {
     // Unlock recursive mutex.
 }
 
-static inline lv_recursive_lock(void)
+static inline void lv_recursive_lock(void)
 {
     // Lock recursive mutex.
 }
