@@ -733,9 +733,9 @@ def main():
     ch = logging.StreamHandler()
     ch.setLevel(logging.INFO)
     generator.logger.addHandler(ch)
-    generator.parse()
 
     # Generate safe_lvgl.
+    generator.parse()
     generator.gen_safe_lvgl()
 
 

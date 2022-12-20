@@ -217,6 +217,7 @@ def main():
     )
 
     # Generate safe_lvgl.
+    generator.parse()
     generator.gen_safe_lvgl()
 
 if __name__ == "__main__":
