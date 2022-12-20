@@ -189,7 +189,7 @@ class SafeLVGL_Generator:
     def __init__(self, lvgl_path : str, safe_lvgl_path : str, 
         compiler_path : str = "gcc", 
         template_header : str = os.path.join(os.path.dirname(__file__), "header_template.h"),
-        template_source : str = os.path.join(os.path.dirname(__file__), "src_template.c"),
+        template_source : str = os.path.join(os.path.dirname(__file__), "source_template.c"),
         template_func_decl : str = os.path.join(os.path.dirname(__file__), "func_decl_template.h"),
         template_func_def  : str = os.path.join(os.path.dirname(__file__), "func_def_template.c"),
         fake_libc_path : str = os.path.join(os.path.dirname(__file__), "fake_libc_include")
@@ -706,14 +706,29 @@ class SafeLVGL_Generator:
 
 
 def main():
-    # Get path of DeploymentTool.
-    dirname = os.path.dirname(os.path.abspath(__file__))
-    tool_path = os.path.realpath(os.path.join(dirname, ".."))
-    lvgl_path = os.path.realpath(os.path.join(tool_path, "../Ghost/Thirdparty/lvgl"))
-    safe_lv_path = os.path.realpath(os.path.join(tool_path, "../Ghost/App/Components/safe_lvgl"))
+    # Parse command parameters.
+    import argparse
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("-l", "--lvgl", type = str, required = True, help = "Path of lvgl.")
+    parser.add_argument("-o", "--output", type = str, required = True, help = "Output path of safe_lvgl.")
+
+    parser.add_argument("--header", type = str, default = "./header_template.h", help = "Path of template header.")
+    parser.add_argument("--source", type = str, default = "./source_template.c", help = "Path of template source.")
+    parser.add_argument("--func_decl", type = str, default = "./func_decl_template.h", help = "Path of template function declaration file.")
+    parser.add_argument("--func_def",  type = str, default = "./func_def_template.c",  help = "Path of template function defination file.")
+
+    args = parser.parse_args()
 
     # Parse
-    generator = SafeLVGL_Generator(lvgl_path, safe_lv_path, compiler_path = "gcc") # Or use "cl" to select msvc, but I haven't tested.
+    generator = SafeLVGL_Generator(
+        lvgl_path = args.lvgl, safe_lvgl_path = args.output, 
+        compiler_path = "gcc", # Or use "cl" to select msvc, but I haven't tested.
+        template_header = args.header, template_source = args.source,
+        template_func_decl = args.func_decl, template_func_def = args.func_def
+    )
+
+    # Setup logger.
     generator.logger.setLevel(logging.INFO)
     ch = logging.StreamHandler()
     ch.setLevel(logging.INFO)
@@ -726,4 +741,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

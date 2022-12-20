@@ -20,8 +20,13 @@ Reference [Variable table](https://github.com/h13-0/safe_lvgl_converter#Variable
 
 ### Run with default configurations.
 ```bash
-python SafeLVGL_Generator.py
+python SafeLVGL_Generator.py -l ${lvgl_path} -o ${output_path}
 ```
+Helper:  
+```bash
+python SafeLVGL_Generator.py -h
+```
+
 
 ## Variable table
 | Variable           | Meaning                                | Example                                                                 |
