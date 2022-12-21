@@ -1,7 +1,7 @@
 /**
  * @file: ${filename} 
  * @note: This document is generated using [safe_lvgl_converter](https://github.com/h13-0/safe_lvgl_converter),
- *            based on lvgl version $lvgl_version$.
+ *            based on lvgl version ${lvgl_version}.
  * @date: ${date}
  * @time: ${time}
  */
