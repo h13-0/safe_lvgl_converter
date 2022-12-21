@@ -434,7 +434,7 @@ class SafeLVGL_Generator:
         output_header.close()
 
 
-    def parse(self) -> int:
+    def parse(self, additional_cpp_args : list = []) -> int:
         # Check lvgl version.
         if(not self.lvgl_version_major):
             self.get_lvgl_version()
@@ -469,7 +469,7 @@ class SafeLVGL_Generator:
 
             # Include fake_libc.
             r'-I{}'.format(self.__fake_libc_path__)
-            ] + include_args
+            ] + include_args + additional_cpp_args
 
         # Parse interface header.
         function_count = self.__parse_header__(os.path.join(self.__lvgl_path__, "lvgl.h"), cpp_args)
