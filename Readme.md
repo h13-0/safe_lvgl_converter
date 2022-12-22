@@ -20,11 +20,11 @@ Reference [Variable table](https://github.com/h13-0/safe_lvgl_converter#Variable
 
 ### Run with default configurations.
 ```bash
-python SafeLVGL_Generator.py -l ${lvgl_path} -o ${output_path}
+python SafeLVGLGenerator.py -l ${lvgl_path} -o ${output_path}
 ```
 Helper:  
 ```bash
-python SafeLVGL_Generator.py -h
+python SafeLVGLGenerator.py -h
 ```
 
 
@@ -209,15 +209,14 @@ from safe_lvgl_converter import SafeLVGL_Generator
 
 def main():
     # Parse.
-    generator = SafeLVGL_Generator(
-        lvgl_path = "...", safe_lvgl_path = "...",
-        compiler_path = "gcc",
-        template_header = "...", template_source = "...",
-        template_func_decl = "...", template_func_def = "..."
+    generator = SafeLVGLGenerator(
+        lvgl_path = lvgl_path, safe_lvgl_path = safe_lvgl_path,
+        template_header = template_header, template_source = template_source,
+        template_func_decl = template_func_decl, template_func_def = template_func_def
     )
 
     # Generate safe_lvgl.
-    generator.parse()
+    generator.parse("gcc", ["-DLV_MEM_CUSTOM=1"])
     generator.gen_safe_lvgl()
 
 if __name__ == "__main__":

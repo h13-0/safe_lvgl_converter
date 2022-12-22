@@ -1,0 +1,3 @@
+[submodule "c_func_parser"]
+	path = c_func_parser
+	url = https://github.com/h13-0/c_func_parser.git
